@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Calculateur Chaînette Napoli – Version Test</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+  <style>
+    :root{
+      --bg:#fff8f4;
+      --card:#ffffff;
+      --text:#4b2e2e;
+      --muted:#7a5a5a;
+      --border:#f1d8c7;
+      --accent:#e7a07a;
+      --accent2:#e88060;
+      --soft:#fff1e8;
+      --soft2:#fde6da;
+      --shadow:0 15px 40px rgba(75,46,46,.12);
+      --radius:22px;
+    }
+
+    *{box-sizing:border-box}
+
+    body{
+      margin:0;
+      padding:40px 16px;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: var(--bg);
+      color:var(--text);
+    }
+
+    .container{
+      max-width:650px;
+      margin:auto;
+    }
+
+    .card{
+      background:var(--card);
+      padding:30px;
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+    }
+
+    h1{
+      text-align:center;
+      margin-top:0;
+      font-size:24px;
+    }
+
+    .bloc{
+      background:var(--soft);
+      padding:20px;
+      border-radius:18px;
+      margin-bottom:18px;
+      font-size:15px;
+      line-height:1.6;
+    }
+
+    .bloc:nth-child(2){
+      background:var(--soft2);
+    }
+
+    label{
+      display:block;
+      margin-top:18px;
+      margin-bottom:6px;
+      font-weight:600;
+      font-size:14px;
+    }
+
+    input{
+      width:100%;
+      padding:12px;
+      border:1px solid var(--border);
+      border-radius:12px;
+      font-size:15px;
+      outline:none;
+      transition:.2s;
+    }
+
+    input:focus{
+      border-color:var(--accent);
+      box-shadow:0 0 0 4px rgba(231,160,122,.25);
+    }
+
+    button{
+      width:100%;
+      margin-top:20px;
+      padding:14px;
+      border:none;
+      border-radius:14px;
+      font-size:16px;
+      font-weight:700;
+      color:white;
+      cursor:pointer;
+      background:linear-gradient(180deg,var(--accent),var(--accent2));
+      transition:.15s;
+    }
+
+    button:hover{
+      transform:translateY(-1px);
+    }
+
+    .result{
+      margin-top:20px;
+      padding:18px;
+      border-radius:18px;
+      background:#fffaf6;
+      border:1px dashed var(--border);
+      font-size:15px;
+      line-height:1.6;
+    }
+
+    .footer{
+      text-align:center;
+      margin-top:20px;
+      font-size:13px;
+      color:var(--muted);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="card">
+
+      <h1>Calculateur Chaînette Napoli</h1>
+
+      <div class="bloc">
+        ✨ <strong>Bienvenue dans ton calculateur Napoli !</strong><br><br>
+        Cet outil t’aide à savoir combien de mailles en l’air tu dois monter pour créer la chaînette de départ de ton vêtement au crochet.
+      </div>
+
+      <div class="bloc">
+        🧶 <strong>Rentre simplement :</strong><br><br>
+        • la largeur que font <strong>12 mailles</strong> sur ton échantillon,<br>
+        • la largeur souhaitée pour ton buste,<br>
+        • la largeur de ta manche.<br><br>
+        Le calcul se fait tout seul, et le résultat te donnera un nombre multiple de 12, parfait pour le motif à chevrons 🌿
+      </div>
+
+      <label>Largeur de 12 mailles (cm)</label>
+      <input type="number" id="echantillon" placeholder="ex : 5,6" step="0.1">
+
+      <label>Largeur du buste souhaitée (cm)</label>
+      <input type="number" id="buste" placeholder="ex : 100">
+
+      <label>Largeur d'une manche souhaitée (cm)</label>
+      <input type="number" id="manche" placeholder="ex : 30">
+
+      <button onclick="calculer()">Calculer</button>
+
+      <div class="result" id="resultat">
+        Entre tes valeurs puis clique sur “Calculer”.
+      </div>
+
+    </div>
+
+    <div class="footer">
+      © Retropicaly – Version test
+    </div>
+  </div>
+
+<script>
+function calculer(){
+  let echantillon = parseFloat(document.getElementById("echantillon").value.replace(",", "."));
+  let buste = parseFloat(document.getElementById("buste").value);
+  let manche = parseFloat(document.getElementById("manche").value);
+
+  if(!echantillon || !buste || !manche){
+    document.getElementById("resultat").innerHTML = "Merci de remplir tous les champs.";
+    return;
+  }
+
+  let mailleParCm = 12 / echantillon;
+
+  function arrondiMultiple12(valeur){
+    return Math.round(valeur / 12) * 12;
+  }
+
+  let maillesBuste = arrondiMultiple12(buste * mailleParCm);
+  let maillesManche = arrondiMultiple12(manche * mailleParCm);
+
+  document.getElementById("resultat").innerHTML =
+    "<strong>Mailles pour le buste :</strong> " + maillesBuste + " ml<br><br>" +
+    "<strong>Mailles pour une manche :</strong> " + maillesManche + " ml";
+}
+</script>
+
+</body>
+</html>
