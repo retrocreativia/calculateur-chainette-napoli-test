@@ -8,122 +8,125 @@
 
   <style>
     :root{
-      --bg:#fdf8f4;
+      --bg:#f3f3f3;
       --card:#ffffff;
-      --text:#4b2e2e;
-      --border:#edd8cc;
-      --accent:#e59a72;
-      --accent2:#de7f5f;
-      --shadow:0 18px 45px rgba(75,46,46,.10);
-      --radius:24px;
+      --text:#3d2b2b;
+      --border:#f1dcdc;
+      --main:#ef4d67;
+      --main-dark:#e33c58;
+      --soft:#fdecef;
+      --shadow:0 18px 45px rgba(0,0,0,.06);
+      --radius:26px;
     }
 
-    *{ box-sizing:border-box; }
+    *{box-sizing:border-box}
 
     body{
       margin:0;
-      padding:50px 18px;
+      padding:60px 18px;
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       background:var(--bg);
       color:var(--text);
     }
 
     .container{
-      max-width:680px;
-      margin:0 auto;
+      max-width:700px;
+      margin:auto;
     }
 
     .card{
       background:var(--card);
-      padding:35px;
+      padding:40px;
       border-radius:var(--radius);
       box-shadow:var(--shadow);
     }
 
     h1{
       text-align:center;
-      margin:0 0 30px;
-      font-size:26px;
-      letter-spacing:-0.3px;
-      color:#5a3a32;
+      margin:0 0 35px;
+      font-size:28px;
+      font-weight:700;
+      letter-spacing:-0.4px;
     }
 
     .bloc-welcome{
-      background:var(--accent);
-      color:#fff;
-      padding:18px;
-      border-radius:18px;
+      background:var(--main);
+      color:white;
+      padding:20px;
+      border-radius:20px;
       font-weight:600;
-      margin-bottom:20px;
+      margin-bottom:22px;
       text-align:center;
-      font-size:16px;
+      font-size:17px;
     }
 
     .bloc-info{
-      background:#fff7f2;
-      padding:24px;
-      border-radius:18px;
-      margin-bottom:28px;
-      font-size:15px;
-      line-height:1.7;
+      background:var(--soft);
+      padding:26px;
+      border-radius:20px;
+      margin-bottom:32px;
+      font-size:16px;
+      line-height:1.8;
       border:1px solid var(--border);
     }
 
     label{
       display:block;
-      margin:18px 0 6px;
+      margin:20px 0 8px;
       font-weight:600;
-      font-size:14px;
+      font-size:15px;
     }
 
     input{
       width:100%;
-      padding:14px;
+      padding:16px;
       border:1px solid var(--border);
-      border-radius:14px;
-      font-size:15px;
+      border-radius:16px;
+      font-size:16px;
       outline:none;
+      background:white;
       transition:.2s;
-      background:#fff;
     }
 
     input:focus{
-      border-color:var(--accent);
-      box-shadow:0 0 0 4px rgba(229,154,114,.25);
+      border-color:var(--main);
+      box-shadow:0 0 0 4px rgba(239,77,103,.2);
     }
 
     button{
       width:100%;
-      margin-top:24px;
-      padding:15px;
+      margin-top:28px;
+      padding:18px;
       border:none;
-      border-radius:16px;
-      font-size:16px;
+      border-radius:18px;
+      font-size:17px;
       font-weight:700;
-      color:#fff;
+      color:white;
       cursor:pointer;
-      background:linear-gradient(180deg,var(--accent),var(--accent2));
+      background:linear-gradient(180deg,var(--main),var(--main-dark));
       transition:.2s;
     }
 
-    button:hover{ transform:translateY(-2px); }
+    button:hover{
+      transform:translateY(-2px);
+    }
 
     .result{
-      margin-top:24px;
-      padding:20px;
-      border-radius:18px;
-      background:#fffaf6;
+      margin-top:28px;
+      padding:22px;
+      border-radius:20px;
+      background:#fff;
       border:1px dashed var(--border);
-      font-size:15px;
+      font-size:16px;
       line-height:1.6;
-      min-height:24px;
+      min-height:28px;
     }
 
     .footer{
       text-align:center;
-      margin-top:25px;
+      margin-top:30px;
       font-size:13px;
-      color:#8c6a60;
+      color:#7a5a5a;
     }
   </style>
 </head>
@@ -134,7 +137,9 @@
 
       <h1>Calculateur de Chaînette de Départ</h1>
 
-      <div class="bloc-welcome">✨ Bienvenue dans ton calculateur Napoli !</div>
+      <div class="bloc-welcome">
+        ✨ Bienvenue dans ton calculateur Napoli !
+      </div>
 
       <div class="bloc-info">
         Cet outil t’aide à savoir combien de mailles en l’air tu dois monter pour créer la chaînette de départ de ton vêtement au crochet.
@@ -161,35 +166,38 @@
 
     </div>
 
-    <div class="footer">© Retropicaly</div>
+    <div class="footer">
+      © Retropicaly
+    </div>
   </div>
 
-  <script>
-    function calculer(){
-      const echantillonStr = (document.getElementById("echantillon").value || "").replace(",", ".");
-      const echantillon = parseFloat(echantillonStr);
-      const buste = parseFloat(document.getElementById("buste").value);
-      const manche = parseFloat(document.getElementById("manche").value);
-      const zone = document.getElementById("resultat");
+<script>
+function calculer(){
+  const echantillonStr = (document.getElementById("echantillon").value || "").replace(",", ".");
+  const echantillon = parseFloat(echantillonStr);
+  const buste = parseFloat(document.getElementById("buste").value);
+  const manche = parseFloat(document.getElementById("manche").value);
+  const zone = document.getElementById("resultat");
 
-      if(!echantillon || !buste || !manche){
-        zone.textContent = "Merci de remplir tous les champs.";
-        return;
-      }
+  if(!echantillon || !buste || !manche){
+    zone.textContent = "Merci de remplir tous les champs.";
+    return;
+  }
 
-      const mailleParCm = 12 / echantillon;
+  const mailleParCm = 12 / echantillon;
 
-      function arrondiMultiple12(valeur){
-        return Math.round(valeur / 12) * 12;
-      }
+  function arrondiMultiple12(valeur){
+    return Math.round(valeur / 12) * 12;
+  }
 
-      const maillesBuste = arrondiMultiple12(buste * mailleParCm);
-      const maillesManche = arrondiMultiple12(manche * mailleParCm);
+  const maillesBuste = arrondiMultiple12(buste * mailleParCm);
+  const maillesManche = arrondiMultiple12(manche * mailleParCm);
 
-      zone.innerHTML =
-        "<strong>Mailles pour le buste :</strong> " + maillesBuste + " ml<br><br>" +
-        "<strong>Mailles pour une manche :</strong> " + maillesManche + " ml";
-    }
-  </script>
+  zone.innerHTML =
+    "<strong>Mailles pour le buste :</strong> " + maillesBuste + " ml<br><br>" +
+    "<strong>Mailles pour une manche :</strong> " + maillesManche + " ml";
+}
+</script>
+
 </body>
 </html>
