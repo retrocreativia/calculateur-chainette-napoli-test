@@ -11,11 +11,9 @@
       --bg:#fdf8f4;
       --card:#ffffff;
       --text:#4b2e2e;
-      --muted:#7a5a5a;
       --border:#edd8cc;
-      --accent:#e7a07a;
-      --accent2:#e88060;
-      --soft:#f7e3d7;
+      --accent:#e59a72;
+      --accent2:#de7f5f;
       --shadow:0 18px 45px rgba(75,46,46,.10);
       --radius:24px;
     }
@@ -48,6 +46,7 @@
       margin-bottom:30px;
       font-size:26px;
       letter-spacing:-0.3px;
+      color:#5a3a32;
     }
 
     .bloc-welcome{
@@ -62,12 +61,13 @@
     }
 
     .bloc-info{
-      background:var(--soft);
-      padding:22px;
+      background:#fff7f2;
+      padding:24px;
       border-radius:18px;
       margin-bottom:28px;
       font-size:15px;
       line-height:1.7;
+      border:1px solid var(--border);
     }
 
     label{
@@ -86,116 +86,14 @@
       font-size:15px;
       outline:none;
       transition:.2s;
+      background:white;
     }
 
     input:focus{
       border-color:var(--accent);
-      box-shadow:0 0 0 4px rgba(231,160,122,.25);
+      box-shadow:0 0 0 4px rgba(229,154,114,.25);
     }
 
     button{
       width:100%;
       margin-top:24px;
-      padding:15px;
-      border:none;
-      border-radius:16px;
-      font-size:16px;
-      font-weight:700;
-      color:white;
-      cursor:pointer;
-      background:linear-gradient(180deg,var(--accent),var(--accent2));
-      transition:.2s;
-    }
-
-    button:hover{
-      transform:translateY(-2px);
-    }
-
-    .result{
-      margin-top:24px;
-      padding:20px;
-      border-radius:18px;
-      background:#fffaf6;
-      border:1px dashed var(--border);
-      font-size:15px;
-      line-height:1.6;
-    }
-
-    .footer{
-      text-align:center;
-      margin-top:25px;
-      font-size:13px;
-      color:var(--muted);
-    }
-  </style>
-</head>
-
-<body>
-  <div class="container">
-    <div class="card">
-
-      <h1>Calculateur de Chaînette de Départ</h1>
-
-      <div class="bloc-welcome">
-        ✨ Bienvenue dans ton calculateur Napoli !
-      </div>
-
-      <div class="bloc-info">
-        Cet outil t’aide à savoir combien de mailles en l’air tu dois monter pour créer la chaînette de départ de ton vêtement au crochet.
-        <br><br>
-        🧶 <strong>Rentre simplement :</strong><br><br>
-        • la largeur que font <strong>12 mailles</strong> sur ton échantillon,<br>
-        • la largeur souhaitée pour ton buste,<br>
-        • la largeur de ta manche.<br><br>
-        Le calcul se fait tout seul, et le résultat te donnera un nombre multiple de 12, parfait pour le motif à chevrons 🌿
-      </div>
-
-      <label>Largeur de 12 mailles (cm)</label>
-      <input type="number" id="echantillon" placeholder="ex : 5,6" step="0.1">
-
-      <label>Largeur du buste souhaitée (cm)</label>
-      <input type="number" id="buste" placeholder="ex : 100">
-
-      <label>Largeur d'une manche souhaitée (cm)</label>
-      <input type="number" id="manche" placeholder="ex : 30">
-
-      <button onclick="calculer()">Calculer</button>
-
-      <div class="result" id="resultat">
-      </div>
-
-    </div>
-
-    <div class="footer">
-      © Retropicaly – Version test
-    </div>
-  </div>
-
-<script>
-function calculer(){
-  let echantillon = parseFloat(document.getElementById("echantillon").value.replace(",", "."));
-  let buste = parseFloat(document.getElementById("buste").value);
-  let manche = parseFloat(document.getElementById("manche").value);
-
-  if(!echantillon || !buste || !manche){
-    document.getElementById("resultat").innerHTML = "Merci de remplir tous les champs.";
-    return;
-  }
-
-  let mailleParCm = 12 / echantillon;
-
-  function arrondiMultiple12(valeur){
-    return Math.round(valeur / 12) * 12;
-  }
-
-  let maillesBuste = arrondiMultiple12(buste * mailleParCm);
-  let maillesManche = arrondiMultiple12(manche * mailleParCm);
-
-  document.getElementById("resultat").innerHTML =
-    "<strong>Mailles pour le buste :</strong> " + maillesBuste + " ml<br><br>" +
-    "<strong>Mailles pour une manche :</strong> " + maillesManche + " ml";
-}
-</script>
-
-</body>
-</html>
