@@ -2,8 +2,8 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Calculateur de Chaînette de Départ</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" href="favicon.ico" type="image/x-icon" />
 
   <style>
@@ -17,7 +17,9 @@
       --shadow:0 18px 45px rgba(75,46,46,.10);
       --radius:24px;
     }
-    *{box-sizing:border-box}
+
+    *{ box-sizing:border-box; }
+
     body{
       margin:0;
       padding:50px 18px;
@@ -25,13 +27,19 @@
       background:var(--bg);
       color:var(--text);
     }
-    .container{max-width:680px;margin:0 auto}
+
+    .container{
+      max-width:680px;
+      margin:0 auto;
+    }
+
     .card{
       background:var(--card);
       padding:35px;
       border-radius:var(--radius);
       box-shadow:var(--shadow);
     }
+
     h1{
       text-align:center;
       margin:0 0 30px;
@@ -39,6 +47,7 @@
       letter-spacing:-0.3px;
       color:#5a3a32;
     }
+
     .bloc-welcome{
       background:var(--accent);
       color:#fff;
@@ -49,6 +58,7 @@
       text-align:center;
       font-size:16px;
     }
+
     .bloc-info{
       background:#fff7f2;
       padding:24px;
@@ -58,12 +68,14 @@
       line-height:1.7;
       border:1px solid var(--border);
     }
+
     label{
       display:block;
       margin:18px 0 6px;
       font-weight:600;
       font-size:14px;
     }
+
     input{
       width:100%;
       padding:14px;
@@ -74,10 +86,12 @@
       transition:.2s;
       background:#fff;
     }
+
     input:focus{
       border-color:var(--accent);
       box-shadow:0 0 0 4px rgba(229,154,114,.25);
     }
+
     button{
       width:100%;
       margin-top:24px;
@@ -91,7 +105,9 @@
       background:linear-gradient(180deg,var(--accent),var(--accent2));
       transition:.2s;
     }
-    button:hover{transform:translateY(-2px)}
+
+    button:hover{ transform:translateY(-2px); }
+
     .result{
       margin-top:24px;
       padding:20px;
@@ -102,6 +118,7 @@
       line-height:1.6;
       min-height:24px;
     }
+
     .footer{
       text-align:center;
       margin-top:25px;
@@ -114,4 +131,65 @@
 <body>
   <div class="container">
     <div class="card">
+
       <h1>Calculateur de Chaînette de Départ</h1>
+
+      <div class="bloc-welcome">✨ Bienvenue dans ton calculateur Napoli !</div>
+
+      <div class="bloc-info">
+        Cet outil t’aide à savoir combien de mailles en l’air tu dois monter pour créer la chaînette de départ de ton vêtement au crochet.
+        <br><br>
+        🧶 <strong>Rentre simplement :</strong><br><br>
+        • la largeur que font <strong>12 mailles</strong> sur ton échantillon,<br>
+        • la largeur souhaitée pour ton buste,<br>
+        • la largeur de ta manche.<br><br>
+        Le calcul se fait tout seul, et le résultat te donnera un nombre multiple de 12, parfait pour le motif à chevrons 🌿
+      </div>
+
+      <label for="echantillon">Largeur de 12 mailles (cm)</label>
+      <input type="number" id="echantillon" placeholder="ex : 5,6" step="0.1" />
+
+      <label for="buste">Largeur du buste souhaitée (cm)</label>
+      <input type="number" id="buste" placeholder="ex : 100" />
+
+      <label for="manche">Largeur d'une manche souhaitée (cm)</label>
+      <input type="number" id="manche" placeholder="ex : 30" />
+
+      <button type="button" onclick="calculer()">Calculer</button>
+
+      <div class="result" id="resultat"></div>
+
+    </div>
+
+    <div class="footer">© Retropicaly</div>
+  </div>
+
+  <script>
+    function calculer(){
+      const echantillonStr = (document.getElementById("echantillon").value || "").replace(",", ".");
+      const echantillon = parseFloat(echantillonStr);
+      const buste = parseFloat(document.getElementById("buste").value);
+      const manche = parseFloat(document.getElementById("manche").value);
+      const zone = document.getElementById("resultat");
+
+      if(!echantillon || !buste || !manche){
+        zone.textContent = "Merci de remplir tous les champs.";
+        return;
+      }
+
+      const mailleParCm = 12 / echantillon;
+
+      function arrondiMultiple12(valeur){
+        return Math.round(valeur / 12) * 12;
+      }
+
+      const maillesBuste = arrondiMultiple12(buste * mailleParCm);
+      const maillesManche = arrondiMultiple12(manche * mailleParCm);
+
+      zone.innerHTML =
+        "<strong>Mailles pour le buste :</strong> " + maillesBuste + " ml<br><br>" +
+        "<strong>Mailles pour une manche :</strong> " + maillesManche + " ml";
+    }
+  </script>
+</body>
+</html>
