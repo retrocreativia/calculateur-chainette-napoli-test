@@ -8,125 +8,136 @@
 
   <style>
     :root{
-      --bg:#f3f3f3;
+      /* Fond et carte : chaleureux, pas froid */
+      --bg:#fff7f8;          /* crème rosé */
       --card:#ffffff;
-      --text:#3d2b2b;
-      --border:#f1dcdc;
-      --main:#ef4d67;
-      --main-dark:#e33c58;
-      --soft:#fdecef;
-      --shadow:0 18px 45px rgba(0,0,0,.06);
-      --radius:26px;
+
+      /* Texte : brun rosé (plus doux que noir) */
+      --text:#4a2f35;
+
+      /* Bordures : rose très clair */
+      --border:#f0d5dc;
+
+      /* Couleurs principales : rose Napoli */
+      --accent:#e36a7a;      /* rose chaud */
+      --accent2:#d95569;     /* rose un peu plus soutenu */
+
+      /* Blocs */
+      --info:#fff1f4;        /* rose très très clair (lisible) */
+
+      --shadow:0 18px 45px rgba(74,47,53,.10);
+      --radius:24px;
     }
 
-    *{box-sizing:border-box}
+    *{ box-sizing:border-box; }
 
     body{
       margin:0;
-      padding:60px 18px;
+      padding:50px 18px;
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       background:var(--bg);
       color:var(--text);
     }
 
     .container{
-      max-width:700px;
-      margin:auto;
+      max-width:680px;
+      margin:0 auto;
     }
 
     .card{
       background:var(--card);
-      padding:40px;
+      padding:35px;
       border-radius:var(--radius);
       box-shadow:var(--shadow);
     }
 
     h1{
       text-align:center;
-      margin:0 0 35px;
-      font-size:28px;
+      margin:0 0 30px;
+      font-size:26px;
+      letter-spacing:-0.3px;
+      color:var(--text);
       font-weight:700;
-      letter-spacing:-0.4px;
     }
 
     .bloc-welcome{
-      background:var(--main);
-      color:white;
-      padding:20px;
-      border-radius:20px;
-      font-weight:600;
-      margin-bottom:22px;
+      background:var(--accent);
+      color:#fff;
+      padding:18px;
+      border-radius:18px;
+      font-weight:650;
+      margin-bottom:20px;
       text-align:center;
-      font-size:17px;
+      font-size:16px;
     }
 
     .bloc-info{
-      background:var(--soft);
-      padding:26px;
-      border-radius:20px;
-      margin-bottom:32px;
-      font-size:16px;
-      line-height:1.8;
+      background:var(--info);
+      padding:24px;
+      border-radius:18px;
+      margin-bottom:28px;
+      font-size:15px;
+      line-height:1.7;
       border:1px solid var(--border);
     }
 
     label{
       display:block;
-      margin:20px 0 8px;
-      font-weight:600;
-      font-size:15px;
+      margin:18px 0 6px;
+      font-weight:650;
+      font-size:14px;
     }
 
     input{
       width:100%;
-      padding:16px;
+      padding:14px;
       border:1px solid var(--border);
-      border-radius:16px;
-      font-size:16px;
+      border-radius:14px;
+      font-size:15px;
       outline:none;
-      background:white;
       transition:.2s;
+      background:#fff;
+      color:var(--text);
     }
 
     input:focus{
-      border-color:var(--main);
-      box-shadow:0 0 0 4px rgba(239,77,103,.2);
+      border-color:var(--accent);
+      box-shadow:0 0 0 4px rgba(227,106,122,.20);
     }
 
     button{
       width:100%;
-      margin-top:28px;
-      padding:18px;
+      margin-top:24px;
+      padding:15px;
       border:none;
-      border-radius:18px;
-      font-size:17px;
-      font-weight:700;
-      color:white;
+      border-radius:16px;
+      font-size:16px;
+      font-weight:800;
+      color:#fff;
       cursor:pointer;
-      background:linear-gradient(180deg,var(--main),var(--main-dark));
+      background:linear-gradient(180deg,var(--accent),var(--accent2));
       transition:.2s;
     }
 
-    button:hover{
-      transform:translateY(-2px);
-    }
+    button:hover{ transform:translateY(-2px); }
 
     .result{
-      margin-top:28px;
-      padding:22px;
-      border-radius:20px;
-      background:#fff;
+      margin-top:24px;
+      padding:20px;
+      border-radius:18px;
+      background:#fffaf9; /* très léger, pas blanc froid */
       border:1px dashed var(--border);
-      font-size:16px;
+      font-size:15px;
       line-height:1.6;
-      min-height:28px;
+      min-height:24px;
+      color:var(--text);
     }
 
     .footer{
       text-align:center;
-      margin-top:30px;
+      margin-top:25px;
       font-size:13px;
-      color:#7a5a5a;
+      color:#8a5b63;
     }
   </style>
 </head>
@@ -137,9 +148,7 @@
 
       <h1>Calculateur de Chaînette de Départ</h1>
 
-      <div class="bloc-welcome">
-        ✨ Bienvenue dans ton calculateur Napoli !
-      </div>
+      <div class="bloc-welcome">✨ Bienvenue dans ton calculateur Napoli !</div>
 
       <div class="bloc-info">
         Cet outil t’aide à savoir combien de mailles en l’air tu dois monter pour créer la chaînette de départ de ton vêtement au crochet.
@@ -166,9 +175,7 @@
 
     </div>
 
-    <div class="footer">
-      © Retropicaly
-    </div>
+    <div class="footer">© Retropicaly</div>
   </div>
 
 <script>
