@@ -4,20 +4,28 @@
   <meta charset="UTF-8" />
   <title>Calculateur de Chaînette de Départ</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
 
   <style>
     :root{
-      --bg:#fff6f9;
+      /* Fond et carte : chaleureux, pas froid */
+      --bg:#fff7f8;          /* crème rosé */
       --card:#ffffff;
+
+      /* Texte : brun rosé (plus doux que noir) */
       --text:#4a2f35;
-      --border:#f3d6e2;
 
-      --accent:#E30B5D;       /* ROSE NAPOLI */
-      --accent-dark:#c1094f;  /* hover bouton */
+      /* Bordures : rose très clair */
+      --border:#f0d5dc;
 
-      --info:#fff0f5;
+      /* Couleurs principales : rose Napoli */
+      --accent:#e36a7a;      /* rose chaud */
+      --accent2:#d95569;     /* rose un peu plus soutenu */
 
-      --shadow:0 18px 45px rgba(227,11,93,.08);
+      /* Blocs */
+      --info:#fff1f4;        /* rose très très clair (lisible) */
+
+      --shadow:0 18px 45px rgba(74,47,53,.10);
       --radius:24px;
     }
 
@@ -33,7 +41,7 @@
 
     .container{
       max-width:680px;
-      margin:auto;
+      margin:0 auto;
     }
 
     .card{
@@ -47,8 +55,9 @@
       text-align:center;
       margin:0 0 30px;
       font-size:26px;
-      font-weight:800;
-      color:var(--accent);
+      letter-spacing:-0.3px;
+      color:var(--text);
+      font-weight:700;
     }
 
     .bloc-welcome{
@@ -88,11 +97,12 @@
       outline:none;
       transition:.2s;
       background:#fff;
+      color:var(--text);
     }
 
     input:focus{
       border-color:var(--accent);
-      box-shadow:0 0 0 4px rgba(227,11,93,.15);
+      box-shadow:0 0 0 4px rgba(227,106,122,.20);
     }
 
     button{
@@ -105,24 +115,22 @@
       font-weight:800;
       color:#fff;
       cursor:pointer;
-      background:var(--accent);
+      background:linear-gradient(180deg,var(--accent),var(--accent2));
       transition:.2s;
     }
 
-    button:hover{
-      background:var(--accent-dark);
-      transform:translateY(-2px);
-    }
+    button:hover{ transform:translateY(-2px); }
 
     .result{
       margin-top:24px;
       padding:20px;
       border-radius:18px;
-      background:#fff8fb;
+      background:#fffaf9; /* très léger, pas blanc froid */
       border:1px dashed var(--border);
       font-size:15px;
       line-height:1.6;
       min-height:24px;
+      color:var(--text);
     }
 
     .footer{
@@ -140,9 +148,7 @@
 
       <h1>Calculateur de Chaînette de Départ</h1>
 
-      <div class="bloc-welcome">
-        ✨ Bienvenue dans ton calculateur Napoli !
-      </div>
+      <div class="bloc-welcome">✨ Bienvenue dans ton calculateur Napoli !</div>
 
       <div class="bloc-info">
         Cet outil t’aide à savoir combien de mailles en l’air tu dois monter pour créer la chaînette de départ de ton vêtement au crochet.
@@ -155,13 +161,13 @@
       </div>
 
       <label for="echantillon">Largeur de 12 mailles (cm)</label>
-      <input type="number" id="echantillon" step="0.1" />
+      <input type="number" id="echantillon" placeholder="ex : 5,6" step="0.1" />
 
       <label for="buste">Largeur du buste souhaitée (cm)</label>
-      <input type="number" id="buste" />
+      <input type="number" id="buste" placeholder="ex : 100" />
 
       <label for="manche">Largeur d'une manche souhaitée (cm)</label>
-      <input type="number" id="manche" />
+      <input type="number" id="manche" placeholder="ex : 30" />
 
       <button type="button" onclick="calculer()">Calculer</button>
 
@@ -202,3 +208,4 @@ function calculer(){
 
 </body>
 </html>
+
