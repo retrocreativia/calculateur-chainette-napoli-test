@@ -2,44 +2,42 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Calculateur Chaînette Napoli – Version Test</title>
+  <title>Calculateur de Chaînette de Départ</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <link rel="icon" href="favicon.ico" type="image/x-icon">
 
   <style>
     :root{
-      --bg:#fff8f4;
+      --bg:#fdf8f4;
       --card:#ffffff;
       --text:#4b2e2e;
       --muted:#7a5a5a;
-      --border:#f1d8c7;
+      --border:#edd8cc;
       --accent:#e7a07a;
       --accent2:#e88060;
-      --soft:#fff1e8;
-      --soft2:#fde6da;
-      --shadow:0 15px 40px rgba(75,46,46,.12);
-      --radius:22px;
+      --soft:#f7e3d7;
+      --shadow:0 18px 45px rgba(75,46,46,.10);
+      --radius:24px;
     }
 
     *{box-sizing:border-box}
 
     body{
       margin:0;
-      padding:40px 16px;
+      padding:50px 18px;
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background: var(--bg);
+      background:var(--bg);
       color:var(--text);
     }
 
     .container{
-      max-width:650px;
+      max-width:680px;
       margin:auto;
     }
 
     .card{
       background:var(--card);
-      padding:30px;
+      padding:35px;
       border-radius:var(--radius);
       box-shadow:var(--shadow);
     }
@@ -47,20 +45,29 @@
     h1{
       text-align:center;
       margin-top:0;
-      font-size:24px;
+      margin-bottom:30px;
+      font-size:26px;
+      letter-spacing:-0.3px;
     }
 
-    .bloc{
-      background:var(--soft);
-      padding:20px;
+    .bloc-welcome{
+      background:var(--accent);
+      color:white;
+      padding:18px;
       border-radius:18px;
-      margin-bottom:18px;
-      font-size:15px;
-      line-height:1.6;
+      font-weight:600;
+      margin-bottom:20px;
+      text-align:center;
+      font-size:16px;
     }
 
-    .bloc:nth-child(2){
-      background:var(--soft2);
+    .bloc-info{
+      background:var(--soft);
+      padding:22px;
+      border-radius:18px;
+      margin-bottom:28px;
+      font-size:15px;
+      line-height:1.7;
     }
 
     label{
@@ -73,9 +80,9 @@
 
     input{
       width:100%;
-      padding:12px;
+      padding:14px;
       border:1px solid var(--border);
-      border-radius:12px;
+      border-radius:14px;
       font-size:15px;
       outline:none;
       transition:.2s;
@@ -88,25 +95,25 @@
 
     button{
       width:100%;
-      margin-top:20px;
-      padding:14px;
+      margin-top:24px;
+      padding:15px;
       border:none;
-      border-radius:14px;
+      border-radius:16px;
       font-size:16px;
       font-weight:700;
       color:white;
       cursor:pointer;
       background:linear-gradient(180deg,var(--accent),var(--accent2));
-      transition:.15s;
+      transition:.2s;
     }
 
     button:hover{
-      transform:translateY(-1px);
+      transform:translateY(-2px);
     }
 
     .result{
-      margin-top:20px;
-      padding:18px;
+      margin-top:24px;
+      padding:20px;
       border-radius:18px;
       background:#fffaf6;
       border:1px dashed var(--border);
@@ -116,7 +123,7 @@
 
     .footer{
       text-align:center;
-      margin-top:20px;
+      margin-top:25px;
       font-size:13px;
       color:var(--muted);
     }
@@ -127,14 +134,15 @@
   <div class="container">
     <div class="card">
 
-      <h1>Calculateur Chaînette Napoli</h1>
+      <h1>Calculateur de Chaînette de Départ</h1>
 
-      <div class="bloc">
-        ✨ <strong>Bienvenue dans ton calculateur Napoli !</strong><br><br>
-        Cet outil t’aide à savoir combien de mailles en l’air tu dois monter pour créer la chaînette de départ de ton vêtement au crochet.
+      <div class="bloc-welcome">
+        ✨ Bienvenue dans ton calculateur Napoli !
       </div>
 
-      <div class="bloc">
+      <div class="bloc-info">
+        Cet outil t’aide à savoir combien de mailles en l’air tu dois monter pour créer la chaînette de départ de ton vêtement au crochet.
+        <br><br>
         🧶 <strong>Rentre simplement :</strong><br><br>
         • la largeur que font <strong>12 mailles</strong> sur ton échantillon,<br>
         • la largeur souhaitée pour ton buste,<br>
@@ -154,7 +162,6 @@
       <button onclick="calculer()">Calculer</button>
 
       <div class="result" id="resultat">
-        Entre tes valeurs puis clique sur “Calculer”.
       </div>
 
     </div>
